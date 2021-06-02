@@ -40,7 +40,7 @@
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
 | postcode      | string     | null:false        |
-| prefecture_id | integer    | null:false        |
+| area_id       | integer    | null:false        |
 | city          | string     | null:false        |
 | block         | string     | null:false        |
 | building      | string     |                   |
