@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :item_image
   with_options presence: true do
+    validates :item_image
     validates :item_name
     validates :item_description
     validates :category_id
