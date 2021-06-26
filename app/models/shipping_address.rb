@@ -8,6 +8,6 @@ class ShippingAddress < ApplicationRecord
     validates :block
     validates :phone_number
   end
-  validates :area_id, with_options numericality: { other_than: 1 }
-  validates :building
+  validates :area_id, numericality: { other_than: 1 }
+  validate :building
 end
