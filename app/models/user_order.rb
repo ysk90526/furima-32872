@@ -6,7 +6,7 @@ class UserOrder
     validates :postcode, format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :city
     validates :block
-    validates :phone_number, format: { with: /\A[0-9]\d{10}$|^\d{11}$\z/ }
+    validates :phone_number, format: { with: /\A\d{10}$|^\d{11}$\z/ }
     validates :token
     validates :user_id
     validates :item_id
