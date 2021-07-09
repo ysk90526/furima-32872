@@ -2,11 +2,14 @@ require 'rails_helper'
 
 RSpec.describe UserOrder, type: :model do
   before do
-    @user_order = FactoryBot.build(:user_order, user_id: user.id, item_id: item.id)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @user_order = FactoryBot.build(:user_order, user_id: @user.id, item_id: @item.id)
+    sleep 0.1
   end
   describe '商品購入' do
     context '商品購入できるとき' do
-      it 'postcode、area_id、city、block、phone_number、tokenが存在すれば購入できること' do
+      it 'postcode、area_id、city、block、phone_number、token、user_id、item_idが存在すれば購入できること' do
         expect(@user_order).to be_valid
       end
       it 'buildingが空でも購入できる' do
@@ -58,7 +61,7 @@ RSpec.describe UserOrder, type: :model do
       it 'phone_numberは英数混合の値では購入できない' do
         @user_order.phone_number = 'abc12345678'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("")
+        expect(@user_order.errors.full_messages).to include("Phone number is invalid")
       end
       it 'tokenが空では購入できない' do
         @user_order.token = ''
@@ -68,12 +71,12 @@ RSpec.describe UserOrder, type: :model do
       it 'user_idが空では購入できない' do
         @user_order.user_id = ''
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("")
+        expect(@user_order.errors.full_messages).to include("User can't be blank")
       end
       it 'item_idが空では登録できない' do
         @user_order.item_id = ''
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("")
+        expect(@user_order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
