@@ -26,12 +26,12 @@ RSpec.describe UserOrder, type: :model do
       it 'postcodeはハイフンが無ければ購入できない' do
         @user_order.postcode = '1234567'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Postcode is invalid")
+        expect(@user_order.errors.full_messages).to include('Postcode is invalid')
       end
       it 'aria_idが1では購入できない' do
         @user_order.area_id = 1
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Area must be other than 1")
+        expect(@user_order.errors.full_messages).to include('Area must be other than 1')
       end
       it 'cityが空では購入できない' do
         @user_order.city = ''
@@ -51,17 +51,17 @@ RSpec.describe UserOrder, type: :model do
       it 'phone_numberは9桁以下では購入できない' do
         @user_order.phone_number = '090123456'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@user_order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは12桁以上では購入できない' do
         @user_order.phone_number = '090123456789'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@user_order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは英数混合の値では購入できない' do
         @user_order.phone_number = 'abc12345678'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@user_order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'tokenが空では購入できない' do
         @user_order.token = ''
